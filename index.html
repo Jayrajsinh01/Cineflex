@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CineFlix</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+  <script src="auth.js" defer></script>
+</head>
+<body>
+
+  <div id="auth-container">
+    <div class="auth-box">
+      <h1 class="auth-logo">CINEFLIX</h1>
+      <h2>Sign In</h2>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit" id="login-submit">Sign In</button>
+      </form>
+      <p>New to Cineflix? <a href="#" id="toggle-signup">Sign up now.</a></p>
+      <form id="signup-form" style="display:none;">
+        <input type="email" id="signup-email" placeholder="Email" required />
+        <input type="password" id="signup-password" placeholder="Password" required />
+        <button type="submit" id="signup-submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="main-content" style="display: none;">
+    
+    <header>
+      <div class="header-left">
+        <h1 class="logo">CINEFLIX</h1>
+        <nav class="nav-menu">
+          <a href="#">Home</a>
+          <a href="#">TV Shows</a>
+          <a href="#">Movies</a>
+          <a href="#">My List</a>
+        </nav>
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search..." onkeyup="handleSearch()" onfocus="showAllMovies()" />
+          <div id="searchResults"></div>
+        </div>
+      </div>
+      <div class="header-right">
+        <button id="logoutBtn" class="auth-button">Logout</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+        <source src="https://netflixclone-media.s3.us-east-1.amazonaws.com/videos/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
+      <div class="hero-text">
+        <h2>PEAKY BLINDERS</h2>
+        <button class="btn-play">▶ Play</button>
+        <button class="btn-info">ℹ More Info</button>
+        <button id="mute-toggle" class="mute-btn"><i class="fa-solid fa-volume-high"></i></button>
+      </div>
+    </section>
+
+    <section id="singleMovieDisplay" class="row single-movie-row" style="display: none;">
+      <h3>Search Result</h3>
+      <div class="row-posters" id="singleMoviePoster">
+        </div>
+    </section>
+
+    <section class="row">
+      <h3>Action</h3>
+      <div class="row-posters">
+        <div class="poster-card"><img src="Action/A-1.JPG" class="poster" alt="Peaky Blinders" /></div>
+        <div class="poster-card"><img src="Action/A-2.JPG" class="poster" alt="Breaking Bad" /></div>
+        <div class="poster-card"><img src="Action/A-3.jpeg" class="poster" alt="Pushpa" /></div>
+        <div class="poster-card"><img src="Action/A-4.jpeg" class="poster" alt="Bahubali" /></div>
+        <div class="poster-card"><img src="Action/A-5.jpeg" class="poster" alt="Animal" /></div>
+        <div class="poster-card"><img src="Action/A-6.jpeg" class="poster" alt="John Wick" /></div>
+        <div class="poster-card"><img src="Action/A-7.jpeg" class="poster" alt="Squid Games" /></div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h3>Comedy</h3>
+      <div class="row-posters">
+        <div class="poster-card"><img src="Comedy/C-1.jpeg" class="poster" alt="Hera Pheri" /></div>
+        <div class="poster-card"><img src="Comedy/C-2.jpeg" class="poster" alt="Hangover" /></div>
+        <div class="poster-card"><img src="Comedy/C-3.jpeg" class="poster" alt="21 Jump Street" /></div>
+        <div class="poster-card"><img src="Comedy/C-4.jpeg" class="poster" alt="Dirty Grandpa" /></div>
+        <div class="poster-card"><img src="Comedy/C-5.jpeg" class="poster" alt="PK" /></div>
+        <div class="poster-card"><img src="Comedy/C-6.jpeg" class="poster" alt="White Chicks" /></div>
+        <div class="poster-card"><img src="Comedy/C-7.jpeg" class="poster" alt="3 Idiots" /></div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h3>Anime</h3>
+      <div class="row-posters">
+        <div class="poster-card"><img src="Anime/AN-1.jpeg" class="poster" alt="Naruto" /></div>
+        <div class="poster-card"><img src="Anime/AN-2.jpeg" class="poster" alt="Jujutsu Kaisen" /></div>
+        <div class="poster-card"><img src="Anime/AN-3.jpeg" class="poster" alt="Death Note" /></div>
+        <div class="poster-card"><img src="Anime/AN-4.jpeg" class="poster" alt="Doraemon" /></div>
+        <div class="poster-card"><img src="Anime/AN-5.jpeg" class="poster" alt="Pokemon" /></div>
+        <div class="poster-card"><img src="Anime/AN-6.jpeg" class="poster" alt="Chota Bheem" /></div>
+        <div class="poster-card"><img src="Anime/AN-7.jpeg" class="poster" alt="Haikyuu" /></div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h3>Bollywood</h3>
+      <div class="row-posters">
+        <div class="poster-card"><img src="Bollywood/B-1.JPG" class="poster" alt="Swades" /></div>
+        <div class="poster-card"><img src="Bollywood/B-2.jpeg" class="poster" alt="Yeh Jawani Hai Diwani" /></div>
+        <div class="poster-card"><img src="Bollywood/B-3.jpeg" class="poster" alt="Bhag Milkha Bhag" /></div>
+        <div class="poster-card"><img src="Bollywood/B-4.jpeg" class="poster" alt="Zindagi Na Milegi Doobara" /></div>
+        <div class="poster-card"><img src="Bollywood/B-5.jpeg" class="poster" alt="Om Shanti Om" /></div>
+        <div class="poster-card"><img src="Bollywood/B-6.jpeg" class="poster" alt="Chhaava" /></div>
+        <div class="poster-card"><img src="Bollywood/B-7.jpeg" class="poster" alt="Dangal" /></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>CINEFLIX • Built by JAYRAJSINH</p>
+    </footer>
+  </div>
+
+  <script>
+    const allMovieCards = document.querySelectorAll('.poster-card');
+    const allMovieRows = document.querySelectorAll('.all-movies-row');
+    const singleMovieDisplay = document.getElementById('singleMovieDisplay');
+    const singleMoviePosterContainer = document.getElementById('singleMoviePoster');
+    const heroSection = document.querySelector('.hero');
+    const searchInput = document.getElementById('searchInput');
+
+    async function handleSearch() {
+      const query = searchInput.value.trim();
+      const resultsDiv = document.getElementById('searchResults');
+    
+      if (!query) {
+        resultsDiv.style.display = 'none';
+        resultsDiv.innerHTML = '';
+        showAllMovies();
+        return;
+      }
+    
+      try {
+        const esQuery = {
+          query: {
+            match_phrase: {
+              title: query
+            }
+          },
+          size: 5
+        };
+
+        const response = await fetch(`http://localhost:9200/movies/_search`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(esQuery)
+        });
+        const data = await response.json();
+    
+        if (data.hits && data.hits.hits.length > 0) {
+          resultsDiv.innerHTML = data.hits.hits.map(hit => {
+            const movie = hit._source;
+            return `<div class="search-result-item" onclick='selectMovie(${JSON.stringify(movie)})'>${movie.title} (${movie.year})</div>`;
+          }).join('');
+          resultsDiv.style.display = 'block';
+        } else {
+          resultsDiv.innerHTML = '<div class="search-result-item">No results found</div>';
+          resultsDiv.style.display = 'block';
+          hideAllMovies();
+          hideSingleMovieDisplay();
+        }
+      } catch (err) {
+        console.error("Search error:", err);
+        resultsDiv.innerHTML = '<div class="search-result-item">Search error</div>';
+        resultsDiv.style.display = 'block';
+        hideAllMovies();
+        hideSingleMovieDisplay();
+      }
+    }
+    
+    function selectMovie(movie) {
+      searchInput.value = movie.title;
+      document.getElementById('searchResults').style.display = 'none';
+    
+      hideAllMovies();
+      showSingleMovie(movie);
+    }
+
+    function hideAllMovies() {
+      allMovieRows.forEach(row => {
+        row.style.display = 'none';
+      });
+      heroSection.style.display = 'none';
+      hideSingleMovieDisplay();
+    }
+
+    function showAllMovies() {
+      allMovieRows.forEach(row => {
+        row.style.display = 'block';
+      });
+      heroSection.style.display = 'block';
+      hideSingleMovieDisplay();
+      searchInput.value = '';
+      document.getElementById('searchResults').style.display = 'none';
+    }
+
+    function showSingleMovie(movie) {
+      singleMoviePosterContainer.innerHTML = '';
+      const matchingCard = Array.from(allMovieCards).find(card => 
+        card.querySelector('.poster').alt.toLowerCase() === movie.title.toLowerCase()
+      );
+      if (matchingCard) {
+        const clonedCard = matchingCard.cloneNode(true);
+        singleMoviePosterContainer.appendChild(clonedCard);
+        singleMovieDisplay.style.display = 'block';
+      } else {
+        singleMoviePosterContainer.innerHTML = `<p style="padding: 20px;">Poster for "${movie.title}" not found in current collection.</p>`;
+        singleMovieDisplay.style.display = 'block';
+      }
+    }
+
+    function hideSingleMovieDisplay() {
+      singleMovieDisplay.style.display = 'none';
+      singleMoviePosterContainer.innerHTML = '';
+    }
+
+    searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const query = this.value.trim();
+            if (query) {
+                performExactSearch(query);
+                document.getElementById('searchResults').style.display = 'none';
+            } else {
+                showAllMovies();
+            }
+        }
+    });
+
+    async function performExactSearch(query) {
+        try {
+            const esQuery = {
+                query: {
+                    match_phrase: {
+                        title: query
+                    }
+                },
+                size: 1
+            };
+
+            const response = await fetch(`http://localhost:9200/movies/_search`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(esQuery)
+            });
+            const data = await response.json();
+
+            if (data.hits && data.hits.hits.length > 0) {
+                selectMovie(data.hits.hits[0]._source);
+            } else {
+                hideAllMovies();
+                hideSingleMovieDisplay();
+                singleMoviePosterContainer.innerHTML = `<p style="padding: 20px;">No exact match found for "${query}".</p>`;
+                singleMovieDisplay.style.display = 'block';
+            }
+        } catch (err) {
+            console.error("Exact search error:", err);
+        }
+    }
+
+    document.addEventListener('click', function(event) {
+      const searchContainer = document.querySelector('.search-container');
+      if (!searchContainer.contains(event.target)) {
+        document.getElementById('searchResults').style.display = 'none';
+      }
+    });
+
+    const heroVideo = document.getElementById('hero-video');
+    const muteToggle = document.getElementById('mute-toggle');
+    const muteIcon = muteToggle.querySelector('i');
+
+    if (heroVideo && muteToggle && muteIcon) {
+      muteToggle.addEventListener('click', () => {
+        heroVideo.muted = !heroVideo.muted;
+        if (heroVideo.muted) {
+          muteIcon.className = 'fa-solid fa-volume-high';
+        } else {
+          muteIcon.className = 'fa-solid fa-volume-xmark';
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>
