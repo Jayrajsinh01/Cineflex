@@ -1,6 +1,6 @@
 // auth.js
 
-// 1. YOUR FIREBASE CONFIGURATION GOES HERE
+// 1. FIREBASE CONFIGURATION 
 const firebaseConfig = {
     apiKey: "AIzaSyDFTQeDmEZRiCs1iOjJroWMSzubDlBbsfM",
     authDomain: "netflix-clone-13817.firebaseapp.com",
