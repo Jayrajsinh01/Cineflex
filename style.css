@@ -437,3 +437,89 @@ header {
   background-color: #e50914;
   color: white;
 }
+
+
+/*Different Views */
+
+@media (max-width: 768px) {
+  /* Header adjustments */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .header-right {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  #searchInput {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Hero section */
+  .hero-text {
+    bottom: 10px;
+    left: 10px;
+    max-width: 90%;
+  }
+
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .btn-play,
+  .btn-info {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+
+  .poster-card {
+    width: 120px;
+  }
+
+  .row {
+    margin: 10px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  /* Auth/login page */
+  .auth-box {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  #auth-container input,
+  #auth-container button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .auth-logo {
+    font-size: 2rem;
+  }
+}
+
