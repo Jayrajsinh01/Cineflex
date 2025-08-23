@@ -5,66 +5,14 @@ body {
   color: #fff;
   font-family: Arial, sans-serif;
 }
-/* Styling for auth container */
-#auth-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #111;
-  color: rgb(255, 255, 255);
-  
 
-  background-image: url('https://netflixclone-media.s3.us-east-1.amazonaws.com/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-pre.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-  
-  position: relative;
-}
-
-#auth-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  z-index: 0;
-}
-.auth-box {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 40px; 
-  border-radius: 5px;
-  text-align: center;
-  width: 90%; 
-  max-width: 400px; 
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-  z-index: 1;
-  backdrop-filter: blur(0px);
-}
-
-
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  z-index: -1;
-}
-  
 /* Header layout */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; 
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
   padding: 15px 40px;
   display: flex;
@@ -83,7 +31,7 @@ header {
 /* Header right container for logout button and search bar */
 .header-right {
   display: flex;
-  gap: 15px; 
+  gap: 15px;
   align-items: center;
 }
 
@@ -152,8 +100,7 @@ header {
   background-color: #f40612;
 }
 
-
-
+/* Add search results dropdown styling */
 #searchResults {
   position: absolute;
   top: 100%;
@@ -164,7 +111,7 @@ header {
   border-radius: 4px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
   color: white;
-  z-index: 1000;
+  z-index: 1001;
   display: none;
 }
 
@@ -183,38 +130,28 @@ header {
   color: white;
 }
   
-  /* Search input styling */
-  #searchInput {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  max-width: 220px;
-  font-size: 1rem;
-  }
-  
-  /* Hero section fills viewport height */
-  .hero {
+/* Hero section fills viewport height */
+.hero {
   position: relative;
-  height: 100vh; 
+  height: 100vh;
   overflow: hidden;
-  margin-top: 60px; 
-  }
+  margin-top: 60px;
+}
   
-  /* Video fills hero area */
-  .hero-video {
+/* Video fills hero area */
+.hero-video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   filter: brightness(1.1);
   z-index: 0;
-  }
+}
   
-  /* White transparent overlay for brightness control */
-  .hero-video-overlay {
+/* White transparent overlay for brightness control */
+.hero-video-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -222,29 +159,29 @@ header {
   height: 100%;
   background-color: rgba(2, 2, 2, 0.15);
   z-index: 1;
-  }
+}
   
-  /* Hero text on top */
-  .hero-text {
+/* Hero text on top */
+.hero-text {
   position: absolute;
-  bottom: 20px; 
-  left: 20px; 
+  bottom: 20px;
+  left: 20px;
   color: white;
   z-index: 10;
-  max-width: 300px; 
-  }
+  max-width: 300px;
+}
   
-  .hero-text h2 {
+.hero-text h2 {
   font-size: 2rem;
   margin: 0;
-  }
+}
   
-  .hero-text p {
+.hero-text p {
   margin: 8px 0 0;
   }
   
-  .btn-play,
-  .btn-info {
+.btn-play,
+.btn-info {
   cursor: pointer;
   background-color: rgba(109, 109, 110, 0.7);
   border: none;
@@ -255,79 +192,51 @@ header {
   border-radius: 4px;
   font-family: 'Bebas Neue', cursive;
   transition: background-color 0.3s ease;
-  }
+}
   
-  .btn-play:hover,
-  .btn-info:hover {
+.btn-play:hover,
+.btn-info:hover {
   background-color: rgba(245, 8, 8, 0.7);
-  }
-  /* Rows */
-  .row {
+}
+/* Rows */
+.row {
   margin: 20px;
-  }
+}
   
-  .row h3 {
+.row h3 {
   margin: 10px 0;
-  }
+}
   
-  .row-posters {
+.row-posters {
   display: flex;
   overflow-x: auto;
   gap: 20px;
   padding: 10px 0;
-  }
+}
   
-  .poster-card {
+.poster-card {
   width: 180px;
   cursor: pointer;
-  }
+}
   
-  .poster {
+.poster {
   width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
   border-radius: 6px;
   transition: opacity 0.3s;
-  }
+}
   
-  /* Footer */
-  footer {
+/* Footer */
+footer {
   text-align: center;
   padding: 20px;
   background: #000;
   font-size: 0.9rem;
   color: #aaa;
-  }
-  
-  #searchResults {
-  position: absolute;
-  background: #222;
-  max-width: 220px;
-  margin-top: 5px;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
-  color: white;
-  z-index: 1000;
-  display: none;
-  }
-  
-  .search-result-item {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #444;
-  }
-  
-  .search-result-item:last-child {
-  border-bottom: none;
-  }
-  
-  .search-result-item:hover {
-  background-color: #e50914;
-  color: white;
-  }
+}
 
-
-  /* Styling for auth container */
+/* Styling for auth container */
 #auth-container {
   display: flex;
   justify-content: center;
@@ -335,15 +244,35 @@ header {
   height: 100vh;
   background-color: #111;
   color: white;
+  
+  background-image: url('/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-pre.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  position: relative;
 }
 
+#auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
 .auth-box {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   padding: 40px; 
   border-radius: 5px;
   text-align: center;
   width: 90%; 
   max-width: 400px; 
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  backdrop-filter: blur(100px);
 }
 
 .auth-logo {
@@ -355,7 +284,7 @@ header {
 
 #auth-container input {
   display: block;
-  width: 100%; 
+  width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -366,9 +295,9 @@ header {
 }
 
 #auth-container button {
-  width: 100%; 
+  width: 100%;
   padding: 12px;
-  background-color: #e50914;
+  background-color: #dd1212;
   border: none;
   border-radius: 4px;
   color: white;
@@ -384,63 +313,29 @@ header {
   font-weight: bold;
 }
 
-
-/* Search input styling */
-#searchInput {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  max-width: 220px;
-  font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.2); 
-  color: white; 
+.header-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-#searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.7); 
-}
-
-/* Search container styling */
-.search-container {
-  position: relative; 
-  margin-left: auto; 
-}
-
-/* Search results dropdown styling */
-#searchResults {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #222;
-  width: 100%;
-  margin-top: 5px;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
-  color: white;
-  z-index: 1001; 
-  display: none;
-}
-
-.search-result-item {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid #444;
-}
-
-.search-result-item:last-child {
-  border-bottom: none;
-  
-}
-
-.search-result-item:hover {
+.auth-button {
   background-color: #e50914;
   color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
+.auth-button:hover {
+  background-color: #f40612;
+}
 
-/*Different Views */
-
+/* Mobile view */
 @media (max-width: 768px) {
   /* Header adjustments */
   header {
@@ -494,7 +389,6 @@ header {
     font-size: 0.9rem;
   }
 
-
   .poster-card {
     width: 120px;
   }
@@ -503,42 +397,3 @@ header {
     margin: 10px;
   }
 }
-
-.hamburger {
-  display: none; /
-  font-size: 26px;
-  cursor: pointer;
-  margin-left: 15px;
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  .nav-menu,
-  .search-container {
-    display: none; 
-  }
-  .hamburger {
-    display: block; 
-  }
-}
-
-
-/* Mobile phones */
-@media (max-width: 480px) {
-  /* Auth/login page */
-  .auth-box {
-    padding: 20px;
-    max-width: 90%;
-  }
-
-  #auth-container input,
-  #auth-container button {
-    font-size: 0.9rem;
-    padding: 10px;
-  }
-
-  .auth-logo {
-    font-size: 2rem;
-  }
-}
-
