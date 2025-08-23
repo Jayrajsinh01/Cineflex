@@ -504,6 +504,25 @@ header {
   }
 }
 
+.hamburger {
+  display: none; /
+  font-size: 26px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .nav-menu,
+  .search-container {
+    display: none; 
+  }
+  .hamburger {
+    display: block; 
+  }
+}
+
+
 /* Mobile phones */
 @media (max-width: 480px) {
   /* Auth/login page */
