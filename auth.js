@@ -68,6 +68,36 @@ const firebaseConfig = {
     document.getElementById('signup-form').style.display = 'block';
   });
 
+// 8. Handle "Sign in as guest" button 
+document.getElementById('demo-login-btn').addEventListener('click', async () => {
+  const demoEmail = "demo@cineflix.com";
+  const demoPassword = "demo123";
+  
+ 
+  document.getElementById("email").value = demoEmail;
+  document.getElementById("password").value = demoPassword;
+
+  
+  setTimeout(async () => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(demoEmail, demoPassword);
+      console.log("Demo login successful!");
+    } catch (error) {
+        if (error.code === 'auth/user-not-found') {
+            
+            try {
+                await firebase.auth().createUserWithEmailAndPassword(demoEmail, demoPassword);
+                console.log("Demo user created and logged in!");
+            } catch (createError) {
+                console.error("Demo user creation failed:", createError);
+            }
+        } else {
+            console.error("Demo login error:", error);
+        }
+    }
+  }, 500); 
+});
+
   
 
   
